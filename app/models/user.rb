@@ -4,4 +4,13 @@ class User < ActiveRecord::Base
   acts_as_token_authenticatable
 
   devise :database_authenticatable, :registerable
+
+  has_many :projects
+  
+  def as_json(options={})
+    {
+      id: self.id,
+      email: self.email
+    }
+  end  
 end
