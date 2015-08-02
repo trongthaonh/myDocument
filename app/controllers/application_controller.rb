@@ -1,4 +1,7 @@
 class ApplicationController < ActionController::Base
+
+  include PublicActivity::StoreController
+  
   # Prevent CSRF attacks by raising an exception.
   protect_from_forgery with: :null_session, :if => Proc.new { |c| c.request.format == 'application/json' }
   
