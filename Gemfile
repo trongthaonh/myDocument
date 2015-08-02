@@ -31,6 +31,9 @@ gem 'devise'
 gem 'simple_token_authentication'
 gem 'cancan'
 
+#Tracked activity
+gem 'public_activity'
+
 # Use Unicorn as the app server
 # gem 'unicorn'
 
