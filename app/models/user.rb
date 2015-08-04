@@ -6,7 +6,10 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable
 
   has_many :projects
-  
+  belongs_to :role
+  has_many :bookmarks
+  has_many :documents, :through => :bookmarks
+
   def as_json(options={})
     {
       id: self.id,
