@@ -1,5 +1,5 @@
 class API::V1::ProjectsController < ApplicationController
-  before_action :set_project, only: [:show, :edit, :update, :destroy]
+  before_action :set_project, only: [:show, :update, :destroy]
   load_and_authorize_resource
   
   # GET /api/v1/projects
@@ -15,14 +15,6 @@ class API::V1::ProjectsController < ApplicationController
   def show
   end
 
-  # GET /api/v1/projects/new
-  def new
-    project = Project.new
-  end
-
-  # GET /api/v1/projects/1/edit
-  def edit
-  end
 
   # POST /api/v1/projects
   def create
