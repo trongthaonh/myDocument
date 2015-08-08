@@ -6,7 +6,8 @@ class Ability
       can [:index, :create, :show, :update, :destroy], Project
       can [:index, :create, :show, :update, :destroy], Role
     else
-      can [:show, :update, :destroy], Project do |project|
+      can [:create], Project
+      can [:index, :show, :update, :destroy], Project do |project|
         project.user == user
       end
     end

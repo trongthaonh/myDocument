@@ -10,6 +10,8 @@ class ApplicationController < ActionController::Base
   
   # Apply strong_parameters filtering before CanCan authorization
   # See https://github.com/ryanb/cancan/issues/571#issuecomment-10753675
+  before_filter :authenticate_user!
+
   before_filter do
     resource = controller_name.singularize.to_sym
     method = "#{resource}_params"
@@ -17,8 +19,17 @@ class ApplicationController < ActionController::Base
   end
   
   rescue_from CanCan::AccessDenied do |exception|  
-    respond_to do |format|  
-      format.json { render :json=> exception.to_json, :status => :forbidden }  
+    respond_to do |format| 
+      format.json { render :json=> {:error => "You don't have authorization to extract from data source"}, :status => :forbidden }  
     end   
   end
+
+  protected
+    def authenticate_user!
+      if user_signed_in?
+        super
+      else
+        render :json=> {:error => "You are not logged in or incorrect CSRF token authenticity"}, :status => :forbidden 
+      end
+    end  
 end
