@@ -48,10 +48,26 @@ class API::V1::RolesController < ApplicationController
     end
   end
 
+  def get_users
+    begin
+      @role = Role.find(params[:role_id])
+      @users = @role.users
+      render :json=> {:users => @users}, :status => 200
+    rescue Exception => e
+      @error = e.message
+      render :json => {:error => @error}
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_role
-      @role = Role.find(params[:id])
+      begin
+        @role = Role.find(params[:id])
+      rescue Exception => e
+        @error = e.message
+        render :json => {:error => @error}
+      end
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
