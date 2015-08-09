@@ -15,10 +15,8 @@ class Ability
         project.user == user
       end
 
-      can [:create, :show], Document
-      can [:index,:update, :destroy], Document do |document|
-        document.user == user
-      end
+      can [:index, :create, :show, :update, :destroy], Document
+
     end
   end
 end

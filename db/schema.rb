@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150809032226) do
+ActiveRecord::Schema.define(version: 20150809093517) do
 
   create_table "activities", force: :cascade do |t|
     t.integer  "trackable_id",   limit: 4
@@ -50,6 +50,7 @@ ActiveRecord::Schema.define(version: 20150809032226) do
     t.integer  "project_id", limit: 4
     t.datetime "created_at",               null: false
     t.datetime "updated_at",               null: false
+    t.string   "filename",   limit: 255
   end
 
   add_index "documents", ["project_id"], name: "index_documents_on_project_id", using: :btree
