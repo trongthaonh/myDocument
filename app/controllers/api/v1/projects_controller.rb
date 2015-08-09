@@ -4,11 +4,12 @@ class API::V1::ProjectsController < ApplicationController
   
   # GET /api/v1/projects
   def index
-    if current_user.admin?
-      @projects = Project.all
-    else
-      @projects = current_user.projects
-    end
+    @projects = Project.all
+    # if current_user.admin?
+    #   @projects = Project.all
+    # else
+    #   @projects = current_user.projects
+    # end
   end
 
   # GET /api/v1/projects/1
