@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150804230203) do
+ActiveRecord::Schema.define(version: 20150809032226) do
 
   create_table "activities", force: :cascade do |t|
     t.integer  "trackable_id",   limit: 4
@@ -90,6 +90,8 @@ ActiveRecord::Schema.define(version: 20150804230203) do
     t.string   "username",               limit: 255
     t.boolean  "admin",                              default: false
     t.integer  "role_id",                limit: 4
+    t.string   "status",                 limit: 255
+    t.boolean  "is_locked",                          default: false
   end
 
   add_index "users", ["authentication_token"], name: "index_users_on_authentication_token", using: :btree
