@@ -4,18 +4,11 @@ class API::V1::DocumentsController < ApplicationController
   
   # GET /api/v1/documents
   def index
-    if current_user.admin?
-      @documents = Document.all
-    else
-      @projects = current_user.projects
-      @documents = []
-      @projects.each do |project|
-        unless project.documents.empty?
-          project.documents.each do |document|
-            @documents.push document
-          end
-        end
-      end
+    @documents = Document.search(params)
+
+    respond_to do |format|
+      format.json { render :index, status: :ok}
+      format.csv { send_data @documents.as_csv }
     end
   end
 
