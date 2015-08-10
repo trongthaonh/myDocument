@@ -5,6 +5,7 @@ class Ability
     if user.admin?
       can [:index, :create, :show, :update, :destroy], Project
       can [:index, :create, :show, :update, :destroy], Document
+      can [:index, :create, :show, :update, :destroy], Bookmark
       can [:index, :create, :show, :update, :destroy, :get_users], Role
     else
       can [:create], Project
@@ -17,6 +18,10 @@ class Ability
 
       can [:index, :create, :show, :update, :destroy], Document
 
+      can [:create], Bookmark
+      can [:index, :show, :update, :destroy], Bookmark do |bookmark|
+        bookmark.user == user
+      end
     end
   end
 end

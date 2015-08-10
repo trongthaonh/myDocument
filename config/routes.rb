@@ -12,6 +12,7 @@ Rails.application.routes.draw do
     namespace :v1 do
       resources :projects
       resources :documents
+      resources :bookmarks
       resources :roles do
         get 'users', :to => "roles#get_users" 
       end
