@@ -6,6 +6,7 @@ class Ability
       can [:index, :create, :show, :update, :destroy], Project
       can [:index, :create, :show, :update, :destroy], Document
       can [:index, :create, :show, :update, :destroy], Bookmark
+      can [:index, :show, :destroy], Activity
       can [:index, :create, :show, :update, :destroy, :get_users], Role
     else
       can [:create], Project
@@ -21,6 +22,10 @@ class Ability
       can [:create], Bookmark
       can [:index, :show, :update, :destroy], Bookmark do |bookmark|
         bookmark.user == user
+      end
+
+      can [:index, :show, :destroy], Activity do |activity|
+        activity.owner_id == user.id
       end
     end
   end

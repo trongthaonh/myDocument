@@ -13,6 +13,7 @@ Rails.application.routes.draw do
       resources :projects
       resources :documents
       resources :bookmarks
+      resources :activities
       resources :roles do
         get 'users', :to => "roles#get_users" 
       end

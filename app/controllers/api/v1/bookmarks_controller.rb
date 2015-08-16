@@ -3,6 +3,7 @@ class API::V1::BookmarksController < ApplicationController
   load_and_authorize_resource
   
   # GET /api/v1/bookmarks
+  # GET /api/v1/bookmarks?user_id=1
   def index
     if current_user.admin?
       @bookmarks = Bookmark.all
