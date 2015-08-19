@@ -40,5 +40,26 @@ Rails.application.configure do
   # config.action_view.raise_on_missing_translations = true
 
   # Config default url mailer action
+  config.action_mailer.perform_deliveries = true
+
   config.action_mailer.default_url_options = { :host => 'localhost:3000' }
+
+  config.action_mailer.delivery_method = :smtp
+
+
+  # Test in development with mailcatcher
+  # config.action_mailer.smtp_settings = { 
+  #   address: 'localhost',
+  #   port: 1025 
+  # }
+
+  config.action_mailer.smtp_settings = {
+    address: "smtp.gmail.com",
+    port: 587,
+    domain: "gmail.com",
+    authentication: "plain",
+    enable_starttls_auto: true,
+    user_name: "info.mydocumentvn@gmail.com",
+    password: "!@##@!!@##@!"
+  }
 end
