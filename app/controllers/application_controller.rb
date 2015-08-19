@@ -34,8 +34,16 @@ class ApplicationController < ActionController::Base
       end
     end
 
+    def can_confirmation
+      if controller_name == 'confirmations' && action_name == 'show'
+        true
+      else
+        false
+      end      
+    end
+
     def authenticate_user!
-      if user_signed_in? || can_create_user
+      if user_signed_in? || can_create_user || can_confirmation
         super
       else
         render :json=> {:error => "You are not logged in or incorrect CSRF token authenticity"}, :status => :forbidden 
