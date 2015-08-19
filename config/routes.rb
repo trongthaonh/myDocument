@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
-  devise_for :users, :controllers => {:registrations => "registrations", :sessions => "sessions"}
+  devise_for :users, :controllers => {
+    :registrations => "overrides/registrations",
+    :sessions => "overrides/sessions"
+  }
 
   devise_scope :user do
     get 'api/v1/users', :to => "registrations#index"
