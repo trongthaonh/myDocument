@@ -1,14 +1,15 @@
 Rails.application.routes.draw do
   devise_for :users, :controllers => {
     :registrations => "overrides/registrations",
-    :sessions => "overrides/sessions"
+    :sessions => "overrides/sessions",
+    :passwords => "overrides/passwords"
   }
 
   devise_scope :user do
-    get 'api/v1/users', :to => "registrations#index"
-    get 'api/v1/users/:id', :to => "registrations#show"
-    put 'api/v1/users/:id', :to => "registrations#update"
-    post 'api/v1/users', :to => "registrations#create"
+    get 'api/v1/users', :to => "overrides/registrations#index"
+    get 'api/v1/users/:id', :to => "overrides/registrations#show"
+    put 'api/v1/users/:id', :to => "overrides/registrations#update"
+    post 'api/v1/users', :to => "overrides/registrations#create"
   end
 
   namespace :api, defaults: {format: :json} do

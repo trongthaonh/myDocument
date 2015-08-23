@@ -42,8 +42,14 @@ class ApplicationController < ActionController::Base
       end      
     end
 
+    def can_reset_password
+      if controller_name == 'passwords'
+        true
+      end
+    end
+
     def authenticate_user!
-      if user_signed_in? || can_create_user || can_confirmation
+      if user_signed_in? || can_create_user || can_confirmation || can_reset_password
         super
       else
         render :json=> {:error => "You are not logged in or incorrect CSRF token authenticity"}, :status => :forbidden 
